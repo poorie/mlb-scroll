@@ -1,0 +1,134 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Build debug no cmake",
+			"command": "make",
+			"args": [],
+			"options": {
+				"cwd": "${workspaceFolder}/build"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "shell",
+			"label": "Build debug",
+			"command": "make",
+			"args": [],
+			"options": {
+				"cwd": "${workspaceFolder}/build"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"dependsOn": "CMake: stage debug",
+			"group": "build"
+		},		
+		{
+			"type": "shell",
+			"label": "CMake: stage debug",
+			"command": "cmake",
+			"args": [
+				"-DCMAKE_BUILD_TYPE=Debug",
+				".."
+			],
+			"options": {
+				"cwd": "${workspaceFolder}/build"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		},
+		{
+			"type": "shell",
+			"label": "Build release",
+			"command": "make",
+			"args": [],
+			"options": {
+				"cwd": "${workspaceFolder}/build"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"dependsOn": "CMake: stage release",
+			"group": "build"
+		},
+		{
+			"type": "shell",
+			"label": "CMake: stage release",
+			"command": "cmake",
+			"args": [
+				"-DCMAKE_BUILD_TYPE=Release",
+				".."
+			],
+			"options": {
+				"cwd": "${workspaceFolder}/build"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		},
+		{
+			"type": "shell",
+			"label": "Cocos: Build debug",
+			"command": "cocos",
+			"args": [
+				"compile",
+				".",
+				"-p",
+				"linux",
+				"-m",
+				"debug"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}/build"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		},
+		{
+			"type": "shell",
+			"label": "Cocos: Build release",
+			"command": "cocos",
+			"args": [
+				"compile",
+				".",
+				"-p",
+				"linux",
+				"-m",
+				"release"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}/build"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		},
+		{
+			"type": "shell",
+			"label": "Clean",
+			"command": "make",
+			"args": [
+				"clean"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}/build"
+			},
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}
