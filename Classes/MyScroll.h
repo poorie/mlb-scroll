@@ -38,23 +38,26 @@ USING_NS_CC;
 class MyScroll : public cocos2d::Scene
 {
 private:
+    //Screen layout, elements
     int selectedIndex;
     ui::ListView *listView;
     int totalGames;
-    void handleKeyPress(cocos2d::EventKeyboard::KeyCode keyCode, Event* event);
-    void loadContent();
+    //Download all MLB Content data
+    void loadContentUrl();
     std::tm selectedDate;
-    void onRequestCompleted(cocos2d::network::HttpClient *sender, cocos2d::network::HttpResponse *response);
+    void onContentRequestCompleted(cocos2d::network::HttpClient *sender, cocos2d::network::HttpResponse *response);
+    //Download MLB Content data for Poster image on top, right
     std::vector<std::shared_ptr<std::string>> imageUrls;
-    void loadImage(std::string url);
-    void onRequestImgCompleted(cocos2d::network::HttpClient *sender, cocos2d::network::HttpResponse *response);
+    void loadPosterImageUrl(std::string url);
+    void onRequestPosterCompleted(cocos2d::network::HttpClient *sender, cocos2d::network::HttpResponse *response);
+    //Key Handling operations
+    void handleKeyPress(cocos2d::EventKeyboard::KeyCode keyCode, Event* event);
+    void defocus();
+    void focus();    
 public:
     static cocos2d::Scene* createScene();
 
     virtual bool init();
-
-    // a selector callback
-    void menuCloseCallback(cocos2d::Ref* pSender);
 
     // implement the "static create()" method manually
     CREATE_FUNC(MyScroll);
