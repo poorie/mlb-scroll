@@ -67,5 +67,6 @@
         "typeinfo": "cpp",
         "valarray": "cpp"
     },
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "editor.renderWhitespace": "all"
 }
